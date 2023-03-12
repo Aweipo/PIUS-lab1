@@ -5,9 +5,17 @@ require_once('vendor/autoload.php');
 
     #Variant 2
     #Task 2.1
-    $myEmp = new Employee(1111,'Dave',100.01,new DateTime('2007-12-01')); #Correct user
-	echo $myEmp->Standing_years().'<br/>'; #working of my method
+    echo 'Task 2.1<br/>';
 
+    #Correct users
+    $myEmp1 = new Employee(1111,'Dave',100.01,new DateTime('2007-01-01'));
+    $myEmp2 = new Employee(1111,'Dave',100.01,new DateTime('2007-12-01'));
+
+    #working of my method
+	echo $myEmp1->Standing_years().'<br/>';
+    echo $myEmp2->Standing_years().'<br/>'; 
+
+    #Validators cheking
     try{
         $myEmp = new Employee(111,'D',10.01,new DateTime('2030-01-01')); #Incorrect user with mistakes in all fields
 
@@ -24,6 +32,7 @@ require_once('vendor/autoload.php');
     }
 
     #Task 2.2
+    echo 'Task 2.2<br/>';
     $dep1 = [
         new Employee(1000,"Ave",120,new DateTime()),
         new Employee(1001,"Adam",130,new DateTime()),
@@ -60,30 +69,38 @@ require_once('vendor/autoload.php');
         new Department($specDep,'middles2'), #salary equal to middles but less peapoles
     ];
 
-
     $min = [$departments[0]];
     $max = [$departments[0]];
+
     for($i=1;$i<count($departments);$i++){
-        if ($departments[$i]->summaryOfSalary() == $max[0]->summaryOfSalary()) {
-            if($departments[$i]->getAmountOfWorkers() > $max[0]->getAmountOfWorkers()){
+        if ($departments[$i]->summaryOfSalary() == $max[0]->summaryOfSalary()) 
+        {
+            if($departments[$i]->getAmountOfWorkers() > $max[0]->getAmountOfWorkers())
+            {
                 $max = [$departments[$i]];
             }
-            if($departments[$i]->getAmountOfWorkers() == $max[0]->getAmountOfWorkers()){
+            if($departments[$i]->getAmountOfWorkers() == $max[0]->getAmountOfWorkers())
+            {
                 $max[count($max)] = $departments[$i];
             }
         }
-        if ($departments[$i]->summaryOfSalary() > $max[0]->summaryOfSalary()) {
+        if ($departments[$i]->summaryOfSalary() > $max[0]->summaryOfSalary())
+        {
             $max = [$departments[$i]];
         }
-        if ($departments[$i]->summaryOfSalary() == $min[0]->summaryOfSalary()) {
-            if($departments[$i]->getAmountOfWorkers() > $min[0]->getAmountOfWorkers()){
+        if ($departments[$i]->summaryOfSalary() == $min[0]->summaryOfSalary())
+        {
+            if($departments[$i]->getAmountOfWorkers() > $min[0]->getAmountOfWorkers())
+            {
                 $min = [$departments[$i]];
             }
-            if($departments[$i]->getAmountOfWorkers() == $min[0]->getAmountOfWorkers()){
+            if($departments[$i]->getAmountOfWorkers() == $min[0]->getAmountOfWorkers())
+            {
                 $min[count($min)] = $departments[$i];
             }
         }
-        if ($departments[$i]->summaryOfSalary() < $min[0]->summaryOfSalary()) {
+        if ($departments[$i]->summaryOfSalary() < $min[0]->summaryOfSalary())
+        {
             $min = [$departments[$i]];
         }
     }
@@ -97,6 +114,3 @@ require_once('vendor/autoload.php');
     foreach($max as $m){
         echo $m->getName()."<br/>";;
     }
-
-
-
