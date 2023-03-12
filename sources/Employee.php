@@ -1,20 +1,10 @@
 <?php
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Validation;
 
 class Employee
 {
-    #private $idValidateRule = [new Con\LessThan(10000),new Con\GreaterThan(999),]; #four digit id
-    #private $nameValidateRule = [new Con\Length(['min' =>1,'max' >= 64]), new Con\NotBlank(),];
-    #private $salaryValidateRule = [new Con\GreaterThan(100)]; #in dollars 
-    #private $hireDateValidateRule = [new LessThanOrEqual(new DateTime()),];
-    #$idValidateRule = [new Assert\LessThan(10000),new Assert\GreaterThan(999), new Assert\Type(['type' => 'integer'])];
-    #$nameValidateRule = [ new Assert\Length(['min' =>1,'max' >= 64]), new Assert\NotBlank(),];
-    #$salaryValidateRule = [new Assert\GreaterThan(100),new Assert\Type(['type' => 'float'])]; #in dollars 
-    #$hireDateValidateRule = [new LessThanOrEqual(new DateTime()),];
-
     public function  __construct(private int $id, private string $name,private float $salary,private DateTime $hireDate) 
     {
         $this->validate();
@@ -46,7 +36,7 @@ class Employee
                         new Assert\Type(['type' => 'float'])
                     ], #in dollars
                     'hireDate' => [
-                        new LessThanOrEqual(new DateTime())
+                        new Assert\LessThanOrEqual(new DateTime())
                     ],
                 ]
             )
